@@ -14,8 +14,8 @@
             <h2 class="blog-post-title"><%= posts[i].title %></h2>
             <p class="blog-post-meta"><%= posts[i].post_date %> by <a href="#"><%= posts[i].author %></a></p>
             <p><%= posts[i].post_data %></p>
-            <a class = "btn btn-danger" href ="/delete/<%= posts[i].id %>"> Delete </a>
-            <a class = "btn btn-info" href ="/edit/<%= posts[i].id %>"> Edit </a>
+            <a class = "btn btn-danger" href ="/views/delete.ejs"> Delete </a>
+            <a class = "btn btn-info" href ="/views/edit.ejs"> Edit </a>
           </div>  
         
         <% } %>
@@ -23,4 +23,4 @@
     </div>
   </div>
 </main>
-<%- include ("./partials/_footer") %>
+<%- include ("./partials/_header") %>
