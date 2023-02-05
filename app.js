@@ -6,12 +6,7 @@ let dotenv = require("dotenv");
 
 dotenv.config();
 
-const app = express();
-
-
-app.get("/", function(req,res){
-    res.send("Bienvenidrr")
-})
+const app = express()
 
 // connection to db
 
