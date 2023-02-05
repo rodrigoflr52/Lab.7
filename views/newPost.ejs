@@ -1,4 +1,4 @@
-<%- include ("./partials/_header") %>
+<%- include ("./templates/_header") %>
 
 
 
@@ -8,57 +8,20 @@
       
       <form action="/newPost" method="POST">
         <div class="form-group">
-          <input type="text" id="title" class="form-control" name="title" placeholder="Title">
+          <input type="text" class="form-control" name="title" placeholder="Title">
         </div>
         <div class="form-group">
-          <input type="text" id="author" class="form-control" name="author" placeholder="Author">
+          <input type="text" name="author" class="form-control" placeholder="Author">
         </div>
         <div class="form-group">
-          <textarea id="post_data" class="form-control" name="post_data" cols="100" rows="10"
-            placeholder="Add a Description"></textarea>
+          <textarea class="form-control" name="post_data" cols="100" rows="10"
+            placeholder="Add a Description">
+          </textarea>
         </div>
-        <button type="submit" id="button-submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </main>
 
-<%- include ("./partials/_footer-action") %>
-
-<script type="text/javascript">
-  $("#button-submit").click(function(event) {
-    event.preventDefault();
-    var title = $("#title").val();
-    var author = $("#author").val();
-    var post_data = $("#post_data").val();
-      
-    var newPost = {
-      title: title,
-      author: author,
-      post_date: Date.now(),
-      post_data: post_data,
-    };
-    if (validatePost(newPost)) {
-        $.post("/newPost", newPost , (data, status) => {
-          window.location.assign('/');
-        });
-    }
-  });
-  
-  function validatePost(newPost) {
-    for (var value in newPost) {
-        if (newPost[value] == "") {
-            alert("Please fill all fields.");
-            return false;
-        }
-    }
-    return true;
-  }
-  
-  
-  // function clearForm() {
-  //   var title = $("input[name='title']").val("");
-  //   var author = $("input[name='author']").val("");
-  //   var post_data = $("input[name='post_data']").val("");
-  // }
-</script>
+<%- include ("./templates/_footer") %>

@@ -1,54 +1,41 @@
-<%- include ("./partials/_header") %>
-  <main role="main" class="container">
-    <div class="row">
-      <div class="col-md-8 blog-main">
-        <h2 class="blog-post-title">Are you sure you want to delete this post?</h2>
-        <form action="/newPost" method="POST">
-          <div class="form-group">
-            <input type="text" id="title" class="form-control" name="title" value="<%= post.title %>">
-          </div>
-          <div class="form-group">
-            <input type="text" id="author" class="form-control" name="author" value="<%= post.author %>">
-          </div>
-          <div class="form-group">
-            <textarea id="post_data" class="form-control" name="post_data" cols="100" rows="10"><%= post.post_data %></textarea>
-          </div>
-          <button type="submit" id="button-edit" class="btn btn-primary">Edit Post</button>
-        </form>
-      </div>
+<%- include ("./templates/_header") %>
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <form action="/edit/<%= post._id %> " method="POST">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Title"
+            value="<%= post.title %> "
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="author"
+            class="form-control"
+            placeholder="Author"
+            value="<%= post.author %> "
+          />
+        </div>
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            name="post_data"
+            cols="100"
+            rows="10"
+            placeholder="Add a Description"
+          >
+          <%= post.post_data %> 
+          </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit Post</button>
+      </form>
     </div>
-  </main>
-<%- include ("./partials/_footer-action") %>
-
-<script type="text/javascript">
-    $("#button-edit").click(function(event) {
-        event.preventDefault();
-        var title = $("#title").val();
-        var author = $("#author").val();
-        var post_data = $("#post_data").val();
-      
-        var newPost = {
-        title: title,
-        author: author,
-        post_date: Date.now(),
-        post_data: post_data,
-        };
-        if (validatePost(newPost)) {
-            $.post("/edit/<%= post.id %>", newPost, (data, status) => {
-                window.location.assign('/');
-            });
-        }
-    });
-  
-
-    
-    function validatePost(newPost) {
-        for (var value in newPost) {
-            if (newPost[value] == "") {
-                alert("Please fill all fields.");
-                return false;
-            }
-        }
-        return true;
-    }
-</script>
+  </div>
+</main>
+<%- include ("./templates/_footer") %>
